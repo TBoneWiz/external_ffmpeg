@@ -176,7 +176,7 @@ AVInputFormat *av_probe_input_format3(AVProbeData *pd, int is_opened,
     AVProbeData lpd = *pd;
     AVInputFormat *fmt1 = NULL, *fmt;
     int score, score_max = 0;
-    const static uint8_t zerobuffer[AVPROBE_PADDING_SIZE];
+    static const uint8_t zerobuffer[AVPROBE_PADDING_SIZE];
     enum nodat {
         NO_ID3,
         ID3_ALMOST_GREATER_PROBE,

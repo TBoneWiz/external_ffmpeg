@@ -608,7 +608,7 @@ void dnxhd_get_blocks(DNXHDEncContext *ctx, int mb_x, int mb_y)
 static av_always_inline
 int dnxhd_switch_matrix(DNXHDEncContext *ctx, int i)
 {
-    const static uint8_t component[8]={0,0,1,2,0,0,1,2};
+    static const uint8_t component[8]={0,0,1,2,0,0,1,2};
     return component[i];
 }
 
