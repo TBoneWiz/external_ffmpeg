@@ -147,7 +147,7 @@ static const Box box_types[] = {
     { MKTAG('h','c','l','r'), encode_hclr },
 };
 
-static const size_t box_count = FF_ARRAY_ELEMS(box_types);
+const static size_t box_count = FF_ARRAY_ELEMS(box_types);
 
 static av_cold int mov_text_encode_init(AVCodecContext *avctx)
 {

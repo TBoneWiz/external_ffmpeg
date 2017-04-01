@@ -61,6 +61,9 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 #endif
+#if HAVE_SETDLLDIRECTORY
+#include <windows.h>
+#endif
 
 static int init_report(const char *env);
 
@@ -109,7 +112,7 @@ static void log_callback_report(void *ptr, int level, const char *fmt, va_list v
 
 void init_dynload(void)
 {
-#ifdef _WIN32
+#if HAVE_SETDLLDIRECTORY
     /* Calling SetDllDirectory with the empty string (but not NULL) removes the
      * current working directory from the DLL search path as a security pre-caution. */
     SetDllDirectory("");
@@ -2108,7 +2111,7 @@ static int print_device_sources(AVInputFormat *fmt, AVDictionary *opts)
     if (!fmt || !fmt->priv_class  || !AV_IS_INPUT_DEVICE(fmt->priv_class->category))
         return AVERROR(EINVAL);
 
-    printf("Audo-detected sources for %s:\n", fmt->name);
+    printf("Auto-detected sources for %s:\n", fmt->name);
     if (!fmt->get_device_list) {
         ret = AVERROR(ENOSYS);
         printf("Cannot list sources. Not implemented.\n");
@@ -2138,7 +2141,7 @@ static int print_device_sinks(AVOutputFormat *fmt, AVDictionary *opts)
     if (!fmt || !fmt->priv_class  || !AV_IS_OUTPUT_DEVICE(fmt->priv_class->category))
         return AVERROR(EINVAL);
 
-    printf("Audo-detected sinks for %s:\n", fmt->name);
+    printf("Auto-detected sinks for %s:\n", fmt->name);
     if (!fmt->get_device_list) {
         ret = AVERROR(ENOSYS);
         printf("Cannot list sinks. Not implemented.\n");
